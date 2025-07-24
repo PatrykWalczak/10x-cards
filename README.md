@@ -192,8 +192,3 @@ Projekt stworzony jako część kursu programowania **10xdevs**.
 
 Ten projekt jest licencjonowany na podstawie licencji MIT - zobacz plik [LICENSE](LICENSE) dla szczegółów.
 
-
-<<<<<<< HEAD
-=======
-**Uwaga**: Ten projekt priorytetowo traktuje prywatność użytkowników i bezpieczeństwo danych. Wszystkie dane osobowe są obsługiwane zgodnie z przepisami RODO, a użytkownicy mają pełną kontrolę nad swoimi danymi z prawem dostępu i usunięcia.
->>>>>>> 65b176cec76852580f03a9147190712881e979b5
