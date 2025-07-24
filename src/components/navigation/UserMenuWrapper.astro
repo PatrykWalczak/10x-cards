@@ -1,0 +1,15 @@
+---
+// Component for rendering user menu with authentication
+---
+
+<div id="user-menu-container">
+  <!-- This will be populated by the React component -->
+</div>
+
+<script>
+  import { AuthProvider } from '../contexts/AuthContext';
+  import { SimpleUserMenu } from './SimpleUserMenu';
+  import { supabaseClient } from '../db/supabase.client-side';
+</script>
+
+<SimpleUserMenu client:load />

@@ -1,0 +1,83 @@
+---
+import "../styles/global.css";
+import { UserMenuWithAuth } from "../components/navigation/UserMenuWithAuth";
+
+interface Props {
+  title?: string;
+  showHeader?: boolean;
+}
+
+const { title = "10x Cards", showHeader = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>  <body class="min-h-screen bg-white">
+    {showHeader && (
+      <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center h-16">
+            <!-- Logo/Brand -->
+            <div class="flex items-center">
+              <a href="/" class="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+                <span class="bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
+                  10x Cards
+                </span>
+              </a>
+            </div>
+
+            <!-- Center Navigation and Right User Menu -->
+            <div class="flex items-center space-x-8">
+              <!-- Navigation -->
+              <nav class="hidden md:flex space-x-8">
+                <a 
+                  href="/" 
+                  class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
+                  data-astro-prefetch
+                >
+                  Strona główna
+                </a>
+                <a 
+                  href="/generate" 
+                  class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
+                  data-astro-prefetch
+                >
+                  Generuj fiszki
+                </a>
+                <a 
+                  href="/flashcards" 
+                  class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
+                  data-astro-prefetch
+                >
+                  Moje fiszki
+                </a>
+              </nav>
+
+              <!-- User Menu -->
+              <div class="flex-shrink-0">
+                <UserMenuWithAuth client:load />
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    )}<main class={showHeader ? 'min-h-[calc(100vh-4rem)]' : 'min-h-screen'}>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+// AuthLayout.astro - Layout dla stron autentykacji
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Logowanie - 10x Cards", description = "Zaloguj się do swojego konta 10x Cards" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pl" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>{title}</title>
+    
+    <!-- Tailwind CSS -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    </style>
+  </head>  <body class="h-full font-sans">
+    <!-- Background with gradient and pattern -->
+    <div class="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800 relative overflow-hidden">
+      <!-- Background decoration -->
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="absolute top-0 left-0 w-full h-full">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-300/10 rounded-full blur-3xl"></div>
+      </div>
+      
+      <!-- Main content -->
+      <div class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full">
+          <!-- Logo/Brand -->
+          <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl mb-4">
+              <span class="text-2xl">🎯</span>
+            </div>
+            <h1 class="text-4xl font-bold text-white mb-2">
+              <span class="bg-gradient-to-r from-white to-blue-100 text-transparent bg-clip-text">
+                10x Cards
+              </span>
+            </h1>
+            <p class="text-blue-100">
+              Inteligentne fiszki z mocą AI
+            </p>
+          </div>
+
+          <!-- Content Card -->
+          <div class="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl p-8 border border-white/20">
+            <slot />
+          </div>
+          
+          <!-- Footer link -->
+          <div class="text-center mt-6">
+            <a href="/" class="text-white/80 hover:text-white text-sm transition-colors">
+              ← Powrót do strony głównej
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Import global styles -->
+    <style is:global>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 3px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </body>
+</html>
