@@ -27,6 +27,15 @@ pnpm-debug.log*
 # VS Code settings
 .vscode/
 
+# Cursor IDE settings
+.cursor/
+
+# Windsurf IDE settings
+.windsurfrules
+
+# AI development docs (internal use)
+.ai/
+
 # temporary test files
 test-openrouter.js
 
