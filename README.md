@@ -10,22 +10,24 @@
 🔁 **Powtarzanie rozłożone w czasie** - wbudowany algorytm do optymalnych sesji nauki  
 👤 **System autentykacji** - bezpieczny system kont z ochroną prywatności danych  
 📊 **Analityka nauki** - śledzenie statystyk generowania i akceptacji fiszek  
-📱 **Responsywny design** - pełna optymalizacja dla urządzeń mobilnych  
+📱 **Responsywny design** - pełna optymalizacja dla urządzeń mobilnych
 
 ## 🖼️ Screenshoty
 
 ### Strona główna
 
 ![Strona głowna - miejsce generowania fiszek](screenshots/main_page.PNG)
-*Intuicyjny interfejs z polem do wklejania tekstu i generowania fiszek*
+_Intuicyjny interfejs z polem do wklejania tekstu i generowania fiszek_
 
 ### Moje fiszki
+
 ![Miejsce po wygenerowaniu fiszek](screenshots/flashcards.PNG)
-*Zarządzanie kolekcją fiszek z możliwością edycji i usuwania*
+_Zarządzanie kolekcją fiszek z możliwością edycji i usuwania_
 
 ## 🚀 Technologie
 
 ### Frontend
+
 - **Astro 5** - szybki framework z minimalnym JavaScript
 - **React 19** - interaktywne komponenty
 - **TypeScript 5** - statyczne typowanie
@@ -33,6 +35,7 @@
 - **Shadcn/ui** - biblioteka komponentów UI
 
 ### Backend & Serwisy
+
 - **Supabase** - kompleksowe rozwiązanie backendowe:
   - PostgreSQL - baza danych
   - Autentykacja użytkowników
@@ -40,11 +43,13 @@
 - **OpenRouter API** - dostęp do modeli AI z kontrolą kosztów
 
 ### AI & Integracje
+
 - **OpenRouter API** - dostęp do różnych modeli LLM
 - **Meta Llama 3.2** - model do generowania fiszek
 - **Inteligentna analiza tekstu** - automatyczne wyodrębnianie kluczowych pojęć
 
 ### DevOps & Testy
+
 - **Vitest** - szybkie testy jednostkowe i integracyjne
 - **ESLint & Prettier** - jakość i formatowanie kodu
 - **Husky** - git hooks dla jakości kodu
@@ -83,6 +88,7 @@
 ## 🛠️ Instalacja i uruchomienie
 
 ### Wymagania
+
 - Node.js 22+
 - npm lub yarn
 - Konto Supabase
@@ -91,27 +97,32 @@
 ### Kroki instalacji
 
 1. **Sklonuj repozytorium**
+
    ```bash
    git clone https://github.com/PatrykWalczak/10x-cards.git
    cd 10x-cards
    ```
 
 2. **Użyj odpowiedniej wersji Node.js**
+
    ```bash
    nvm use
    ```
 
 3. **Zainstaluj zależności**
+
    ```bash
    npm install
    ```
 
 4. **Skonfiguruj zmienne środowiskowe**
+
    ```bash
    cp .env.example .env
    ```
-   
+
    Wypełnij plik `.env`:
+
    ```bash
    # Supabase Configuration
    PUBLIC_SUPABASE_URL=your_supabase_url
@@ -123,6 +134,7 @@
    ```
 
 5. **Uruchom migracje Supabase**
+
    ```bash
    npx supabase db push
    ```
@@ -135,16 +147,19 @@
 ## 🧪 Testowanie
 
 ### Testy jednostkowe
+
 ```bash
 npm run test
 ```
 
 ### Testy w trybie obserwacji
+
 ```bash
 npm run test:watch
 ```
 
 ### Pokrycie kodu
+
 ```bash
 npm run test:coverage
 ```
@@ -159,6 +174,7 @@ Aplikacja może być łatwo wdrożona na różnych platformach:
 - **Cloudflare Pages** - szybki hosting statyczny
 
 ### Ręczny build
+
 ```bash
 npm run build
 ```
@@ -182,8 +198,6 @@ npm run build
 - 🎨 **Personalizacja** - motywy i dostosowywanie interfejsu
 - 📋 **Import/Export** - przenoszenie fiszek między platformami
 
-
-
 ## 🤝 Autorzy
 
 Projekt stworzony jako część kursu programowania **10xdevs**.
@@ -191,4 +205,3 @@ Projekt stworzony jako część kursu programowania **10xdevs**.
 ## 📄 Licencja
 
 Ten projekt jest licencjonowany na podstawie licencji MIT - zobacz plik [LICENSE](LICENSE) dla szczegółów.
-

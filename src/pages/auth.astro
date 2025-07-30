@@ -1,12 +1,12 @@
 ---
 // auth.astro - Strona autentykacji
-import AuthLayout from '../layouts/AuthLayout.astro';
-import { AuthPage } from '../components/auth/AuthPage';
+import AuthLayout from "../layouts/AuthLayout.astro";
+import { AuthPage } from "../components/auth/AuthPage";
 export const prerender = false;
 
 // Handle URL params for mode switching
 const url = Astro.url;
-const mode = url.searchParams.get('mode') || 'login';
+const mode = url.searchParams.get("mode") || "login";
 ---
 
 <AuthLayout title="Autentykacja - 10x Cards">
@@ -18,7 +18,7 @@ const mode = url.searchParams.get('mode') || 'login';
   #auth-root {
     min-height: 400px;
   }
-  
+
   /* Toast animations */
   @keyframes slide-in {
     from {
@@ -30,7 +30,7 @@ const mode = url.searchParams.get('mode') || 'login';
       opacity: 1;
     }
   }
-  
+
   .animate-slide-in {
     animation: slide-in 0.3s ease-out;
   }

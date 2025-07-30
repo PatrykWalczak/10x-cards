@@ -15,7 +15,8 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "test:run": "vitest run"
-  },  "dependencies": {
+  },
+  "dependencies": {
     "@astrojs/node": "^9.1.3",
     "@astrojs/react": "4.2.2",
     "@astrojs/sitemap": "3.3.0",

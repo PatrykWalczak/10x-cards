@@ -1,28 +1,28 @@
 ---
 // Astro page for flashcard generation
-import Layout from '../layouts/Layout.astro';
-import GenerateFlashcardsViewWithAuth from '../components/GenerateFlashcardsViewWithAuth';
+import Layout from "../layouts/Layout.astro";
+import GenerateFlashcardsViewWithAuth from "../components/GenerateFlashcardsViewWithAuth";
 ---
 
 <Layout title="Generuj fiszki - 10xCards">
-	<!-- Header Section -->
-	<div class="bg-gradient-to-r from-blue-50 to-purple-50 border-b border-blue-100">
-		<div class="max-w-4xl mx-auto px-4 py-12">
-			<div class="text-center">
-				<h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text mb-4">
-					Generuj fiszki AI
-				</h1>
-				<p class="text-lg text-gray-600 max-w-2xl mx-auto">
-					Wklej tekst (1000-10000 znaków), a AI wygeneruje dla Ciebie profesjonalne fiszki edukacyjne w kilka sekund
-				</p>
-			</div>
-		</div>
-	</div>
+  <!-- Header Section -->
+  <div class="bg-gradient-to-r from-blue-50 to-purple-50 border-b border-blue-100">
+    <div class="max-w-4xl mx-auto px-4 py-12">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text mb-4">
+          Generuj fiszki AI
+        </h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Wklej tekst (1000-10000 znaków), a AI wygeneruje dla Ciebie profesjonalne fiszki edukacyjne w kilka sekund
+        </p>
+      </div>
+    </div>
+  </div>
 
-	<!-- Main Content -->
-	<main class="min-h-screen bg-gray-50">
-		<div class="max-w-4xl mx-auto px-4 py-8">
-			<GenerateFlashcardsViewWithAuth client:load />
-		</div>
-	</main>
+  <!-- Main Content -->
+  <main class="min-h-screen bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+      <GenerateFlashcardsViewWithAuth client:load />
+    </div>
+  </main>
 </Layout>

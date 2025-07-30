@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import type { FlashcardDto } from '../../types';
-import { Button } from '../ui/button';
+import React, { useState } from "react";
+import type { FlashcardDto } from "../../types";
+import { Button } from "../ui/button";
 
 interface FlashcardItemProps {
   flashcard: FlashcardDto;
@@ -8,16 +8,12 @@ interface FlashcardItemProps {
   onDelete: (id: number) => Promise<void>;
 }
 
-const FlashcardItem: React.FC<FlashcardItemProps> = ({
-  flashcard,
-  onUpdate,
-  onDelete
-}) => {
+const FlashcardItem: React.FC<FlashcardItemProps> = ({ flashcard, onUpdate, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [editForm, setEditForm] = useState({
     front: flashcard.front,
-    back: flashcard.back
+    back: flashcard.back,
   });
   const [isFlipped, setIsFlipped] = useState(false);
 
@@ -26,17 +22,17 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({
       await onUpdate(flashcard.id, {
         front: editForm.front,
         back: editForm.back,
-        source: 'ai-edited'
+        source: "ai-edited",
       });
       setIsEditing(false);
     } catch (error) {
-      console.error('Error updating flashcard:', error);
-      alert('Nie udało się zaktualizować fiszki');
+      console.error("Error updating flashcard:", error);
+      alert("Nie udało się zaktualizować fiszki");
     }
   };
 
   const handleDelete = async () => {
-    if (!confirm('Czy na pewno chcesz usunąć tę fiszkę?')) {
+    if (!confirm("Czy na pewno chcesz usunąć tę fiszkę?")) {
       return;
     }
 
@@ -44,22 +40,22 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({
       setIsDeleting(true);
       await onDelete(flashcard.id);
     } catch (error) {
-      console.error('Error deleting flashcard:', error);
-      alert('Nie udało się usunąć fiszki');
+      console.error("Error deleting flashcard:", error);
+      alert("Nie udało się usunąć fiszki");
       setIsDeleting(false);
     }
   };
 
   const getSourceBadge = (source: string) => {
     switch (source) {
-      case 'ai-full':
-        return { text: '🤖 AI', color: 'bg-blue-100 text-blue-800' };
-      case 'ai-edited':
-        return { text: '✏️ Edytowane', color: 'bg-purple-100 text-purple-800' };
-      case 'manual':
-        return { text: '✋ Ręczne', color: 'bg-green-100 text-green-800' };
+      case "ai-full":
+        return { text: "🤖 AI", color: "bg-blue-100 text-blue-800" };
+      case "ai-edited":
+        return { text: "✏️ Edytowane", color: "bg-purple-100 text-purple-800" };
+      case "manual":
+        return { text: "✋ Ręczne", color: "bg-green-100 text-green-800" };
       default:
-        return { text: '❓ Nieznane', color: 'bg-gray-100 text-gray-800' };
+        return { text: "❓ Nieznane", color: "bg-gray-100 text-gray-800" };
     }
   };
 
@@ -82,10 +78,8 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({
     <div className="bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-200">
       {/* Header with source and actions */}
       <div className="p-4 border-b border-gray-100 flex justify-between items-center">
-        <span className={`px-2 py-1 text-xs font-medium rounded-full ${sourceBadge.color}`}>
-          {sourceBadge.text}
-        </span>
-        
+        <span className={`px-2 py-1 text-xs font-medium rounded-full ${sourceBadge.color}`}>{sourceBadge.text}</span>
+
         <div className="flex items-center space-x-2">
           <button
             onClick={() => setIsFlipped(!isFlipped)}
@@ -94,7 +88,7 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({
           >
             🔄
           </button>
-          
+
           {!isEditing && (
             <>
               <button
@@ -104,7 +98,7 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({
               >
                 ✏️
               </button>
-              
+
               <button
                 onClick={handleDelete}
                 className="p-2 text-gray-400 hover:text-red-600 transition-colors"
@@ -122,9 +116,7 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({
         {isEditing ? (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                📝 Pytanie:
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">📝 Pytanie:</label>
               <textarea
                 value={editForm.front}
                 onChange={(e) => setEditForm({ ...editForm, front: e.target.value })}
@@ -132,11 +124,9 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({
                 rows={2}
               />
             </div>
-            
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                💡 Odpowiedź:
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">💡 Odpowiedź:</label>
               <textarea
                 value={editForm.back}
                 onChange={(e) => setEditForm({ ...editForm, back: e.target.value })}
@@ -144,12 +134,9 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({
                 rows={3}
               />
             </div>
-            
+
             <div className="flex space-x-2">
-              <Button
-                onClick={handleSaveEdit}
-                className="flex-1 bg-green-600 hover:bg-green-700"
-              >
+              <Button onClick={handleSaveEdit} className="flex-1 bg-green-600 hover:bg-green-700">
                 ✅ Zapisz
               </Button>
               <Button
@@ -186,7 +173,7 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({
               onClick={() => setIsFlipped(!isFlipped)}
               className="w-full py-2 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors text-sm"
             >
-              {isFlipped ? '👀 Pokaż pytanie' : '💡 Pokaż odpowiedź'}
+              {isFlipped ? "👀 Pokaż pytanie" : "💡 Pokaż odpowiedź"}
             </button>
           </div>
         )}
@@ -195,11 +182,9 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({
       {/* Footer with metadata */}
       <div className="px-4 py-3 bg-gray-50 rounded-b-xl">
         <div className="text-xs text-gray-500">
-          📅 Utworzono: {new Date(flashcard.created_at).toLocaleDateString('pl-PL')}
+          📅 Utworzono: {new Date(flashcard.created_at).toLocaleDateString("pl-PL")}
           {flashcard.updated_at !== flashcard.created_at && (
-            <span className="ml-2">
-              ✏️ Edytowano: {new Date(flashcard.updated_at).toLocaleDateString('pl-PL')}
-            </span>
+            <span className="ml-2">✏️ Edytowano: {new Date(flashcard.updated_at).toLocaleDateString("pl-PL")}</span>
           )}
         </div>
       </div>

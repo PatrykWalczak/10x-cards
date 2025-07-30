@@ -42,7 +42,7 @@ export interface LogoutResponseDto {
  * =========================================
  */
 
-export type FlashcardSource = 'ai-full' | 'ai-edited' | 'manual';
+export type FlashcardSource = "ai-full" | "ai-edited" | "manual";
 
 export interface FlashcardDto {
   id: number;
@@ -56,7 +56,7 @@ export interface FlashcardDto {
 }
 
 // DTO used when returning a list of flashcards
-export type FlashcardListItemDto = Omit<FlashcardDto, 'user_id'>;
+export type FlashcardListItemDto = Omit<FlashcardDto, "user_id">;
 
 export interface FlashcardsListResponseDto {
   data: FlashcardListItemDto[];
@@ -111,7 +111,7 @@ export interface GeneratedFlashcardDto {
   id: number;
   front: string;
   back: string;
-  source: 'ai-full';
+  source: "ai-full";
 }
 
 export interface GenerateFlashcardsResponseDto {
@@ -290,7 +290,7 @@ export const mapDbToGenerationDetailsDto = (
   accepted_edited_count: generation.accepted_edited_count,
   source_text_length: generation.source_text_length,
   created_at: generation.created_at,
-  flashcards: flashcards.map(f => ({
+  flashcards: flashcards.map((f) => ({
     id: f.id,
     front: f.front,
     back: f.back,
@@ -309,7 +309,7 @@ export const mapDbToGenerationDetailsDto = (
 
 // Stan pojedynczej fiszki w widoku
 export interface FlashcardViewState extends GeneratedFlashcardDto {
-  status: 'pending' | 'accepted' | 'edited' | 'rejected';
+  status: "pending" | "accepted" | "edited" | "rejected";
   isEdited: boolean;
   editedFront?: string;
   editedBack?: string;
@@ -332,7 +332,7 @@ export interface EditModalState {
 }
 
 // Typy akcji dla fiszek
-export type FlashcardAction = 'accept' | 'edit' | 'reject';
+export type FlashcardAction = "accept" | "edit" | "reject";
 
 // Typ dla obsługi akcji
 export type FlashcardActionHandler = (id: number, action: FlashcardAction) => void;

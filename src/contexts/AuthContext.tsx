@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
-import type { User } from '@supabase/supabase-js';
-import { supabaseClient as supabase } from '../db/supabase.client-side';
+import React, { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import type { User } from "@supabase/supabase-js";
+import { supabaseClient as supabase } from "../db/supabase.client-side";
 
 interface AuthContextType {
   user: User | null;
@@ -17,7 +17,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };
@@ -32,21 +32,23 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   useEffect(() => {
     // Get initial session
     const getInitialSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
       setLoading(false);
     };
 
-    getInitialSession();    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        setUser(session?.user ?? null);
-        setLoading(false);
-        
-        // Note: Removed automatic redirect to prevent loops
-        // Pages will handle their own authentication checks
-      }
-    );
+    getInitialSession(); // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      setUser(session?.user ?? null);
+      setLoading(false);
+
+      // Note: Removed automatic redirect to prevent loops
+      // Pages will handle their own authentication checks
+    });
 
     return () => subscription.unsubscribe();
   }, []);
@@ -63,8 +65,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       }
 
       return {};
-    } catch (error) {
-      return { error: 'Wystąpił nieoczekiwany błąd podczas logowania' };
+    } catch {
+      return { error: "Wystąpił nieoczekiwany błąd podczas logowania" };
     }
   };
 
@@ -80,32 +82,33 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       }
 
       return {};
-    } catch (error) {
-      return { error: 'Wystąpił nieoczekiwany błąd podczas rejestracji' };
+    } catch {
+      return { error: "Wystąpił nieoczekiwany błąd podczas rejestracji" };
     }
   };
 
   const signOut = async () => {
     await supabase.auth.signOut();
-  };  const resetPassword = async (email: string) => {
+  };
+  const resetPassword = async (email: string) => {
     try {
       const redirectUrl = `${window.location.origin}/auth?mode=reset-password`;
-      console.log('Sending password reset with redirect URL:', redirectUrl);
-      
+      console.log("Sending password reset with redirect URL:", redirectUrl);
+
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: redirectUrl,
       });
 
       if (error) {
-        console.error('Reset password error:', error);
+        console.error("Reset password error:", error);
         return { error: getAuthErrorMessage(error.message) };
       }
 
-      console.log('Password reset email sent successfully');
+      console.log("Password reset email sent successfully");
       return {};
     } catch (error) {
-      console.error('Reset password exception:', error);
-      return { error: 'Wystąpił nieoczekiwany błąd podczas resetowania hasła' };
+      console.error("Reset password exception:", error);
+      return { error: "Wystąpił nieoczekiwany błąd podczas resetowania hasła" };
     }
   };
 
@@ -120,8 +123,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       }
 
       return {};
-    } catch (error) {
-      return { error: 'Wystąpił nieoczekiwany błąd podczas zmiany hasła' };
+    } catch {
+      return { error: "Wystąpił nieoczekiwany błąd podczas zmiany hasła" };
     }
   };
 
@@ -135,30 +138,26 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     updatePassword,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 // Error message mapping
 const getAuthErrorMessage = (error: string): string => {
   switch (error) {
-    case 'Invalid login credentials':
-      return 'Nieprawidłowy email lub hasło';
-    case 'Email not confirmed':
-      return 'Email nie został potwierdzony. Sprawdź swoją skrzynkę pocztową';
-    case 'User already registered':
-      return 'Użytkownik z tym adresem email już istnieje';
-    case 'Password should be at least 6 characters':
-      return 'Hasło musi mieć co najmniej 6 znaków';
-    case 'Unable to validate email address: invalid format':
-      return 'Nieprawidłowy format adresu email';
-    case 'Email rate limit exceeded':
-      return 'Przekroczono limit wysyłania emaili. Spróbuj ponownie później';
+    case "Invalid login credentials":
+      return "Nieprawidłowy email lub hasło";
+    case "Email not confirmed":
+      return "Email nie został potwierdzony. Sprawdź swoją skrzynkę pocztową";
+    case "User already registered":
+      return "Użytkownik z tym adresem email już istnieje";
+    case "Password should be at least 6 characters":
+      return "Hasło musi mieć co najmniej 6 znaków";
+    case "Unable to validate email address: invalid format":
+      return "Nieprawidłowy format adresu email";
+    case "Email rate limit exceeded":
+      return "Przekroczono limit wysyłania emaili. Spróbuj ponownie później";
     default:
-      return 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie';
+      return "Wystąpił nieoczekiwany błąd. Spróbuj ponownie";
   }
 };
 

@@ -1,12 +1,10 @@
-import React from 'react';
+import React from "react";
 
 interface LoadingSpinnerProps {
   message?: string;
 }
 
-const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ 
-  message = "Ładowanie..." 
-}) => {
+const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ message = "Ładowanie..." }) => {
   return (
     <div className="flex items-center justify-center min-h-[200px]">
       <div className="flex items-center space-x-3">

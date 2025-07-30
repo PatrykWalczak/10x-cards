@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 interface LoadingStates {
   signIn: boolean;
@@ -15,7 +15,7 @@ export const useAuthLoading = () => {
   });
 
   const setLoading = useCallback((operation: keyof LoadingStates, isLoading: boolean) => {
-    setLoadingStates(prev => ({
+    setLoadingStates((prev) => ({
       ...prev,
       [operation]: isLoading,
     }));

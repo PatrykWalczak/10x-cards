@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import type { User } from '@supabase/supabase-js';
-import { supabaseClient } from '../../db/supabase.client-side';
+import React, { useState, useRef, useEffect } from "react";
+import type { User } from "@supabase/supabase-js";
+import { supabaseClient } from "../../db/supabase.client-side";
 
 export const UserMenuWithAuth: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -12,10 +12,12 @@ export const UserMenuWithAuth: React.FC = () => {
     // Get current session
     const getSession = async () => {
       try {
-        const { data: { session } } = await supabaseClient.auth.getSession();
+        const {
+          data: { session },
+        } = await supabaseClient.auth.getSession();
         setUser(session?.user || null);
       } catch (error) {
-        console.error('Error getting session:', error);
+        console.error("Error getting session:", error);
       } finally {
         setLoading(false);
       }
@@ -24,7 +26,9 @@ export const UserMenuWithAuth: React.FC = () => {
     getSession();
 
     // Listen for auth changes
-    const { data: { subscription } } = supabaseClient.auth.onAuthStateChange((event, session) => {
+    const {
+      data: { subscription },
+    } = supabaseClient.auth.onAuthStateChange((event, session) => {
       setUser(session?.user || null);
       setLoading(false);
     });
@@ -39,17 +43,17 @@ export const UserMenuWithAuth: React.FC = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSignOut = async () => {
     try {
       await supabaseClient.auth.signOut();
       setIsOpen(false);
-      window.location.href = '/auth';
+      window.location.href = "/auth";
     } catch (error) {
-      console.error('Error signing out:', error);
+      console.error("Error signing out:", error);
     }
   };
 
@@ -64,10 +68,7 @@ export const UserMenuWithAuth: React.FC = () => {
   if (!user) {
     return (
       <div className="flex items-center space-x-4">
-        <a 
-          href="/auth" 
-          className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
-        >
+        <a href="/auth" className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">
           Zaloguj się
         </a>
       </div>
@@ -85,11 +86,9 @@ export const UserMenuWithAuth: React.FC = () => {
         <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-medium">
           {user.email?.charAt(0).toUpperCase()}
         </div>
-        <span className="hidden sm:block text-sm font-medium">
-          {user.email}
-        </span>
+        <span className="hidden sm:block text-sm font-medium">{user.email}</span>
         <svg
-          className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

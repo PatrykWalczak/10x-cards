@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import type { User } from '@supabase/supabase-js';
+import React, { useState, useRef, useEffect } from "react";
+import type { User } from "@supabase/supabase-js";
 
 interface SimpleUserMenuProps {
   user: User | null;
@@ -10,7 +10,7 @@ export const SimpleUserMenu: React.FC<SimpleUserMenuProps> = ({ user, onSignOut 
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  console.log('SimpleUserMenu render, user:', user);
+  console.log("SimpleUserMenu render, user:", user);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -19,23 +19,20 @@ export const SimpleUserMenu: React.FC<SimpleUserMenuProps> = ({ user, onSignOut 
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSignOut = async () => {
     await onSignOut();
     setIsOpen(false);
-    window.location.href = '/auth';
+    window.location.href = "/auth";
   };
 
   if (!user) {
     return (
       <div className="flex items-center space-x-4">
-        <a 
-          href="/auth" 
-          className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors"
-        >
+        <a href="/auth" className="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">
           Zaloguj się
         </a>
       </div>
@@ -53,11 +50,9 @@ export const SimpleUserMenu: React.FC<SimpleUserMenuProps> = ({ user, onSignOut 
         <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-medium">
           {user.email?.charAt(0).toUpperCase()}
         </div>
-        <span className="hidden sm:block text-sm font-medium">
-          {user.email}
-        </span>
+        <span className="hidden sm:block text-sm font-medium">{user.email}</span>
         <svg
-          className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

@@ -1,23 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import TextInputSection from './generate/TextInputSection';
-import GeneratedFlashcardsList from './generate/GeneratedFlashcardsList';
-import SaveActionsSection from './generate/SaveActionsSection';
-import EditFlashcardModal from './generate/EditFlashcardModal';
-import { useGenerateFlashcards } from './hooks/useGenerateFlashcards';
-import { useAuth } from '../contexts/AuthContext';
+import React, { useEffect } from "react";
+import TextInputSection from "./generate/TextInputSection";
+import GeneratedFlashcardsList from "./generate/GeneratedFlashcardsList";
+import SaveActionsSection from "./generate/SaveActionsSection";
+import EditFlashcardModal from "./generate/EditFlashcardModal";
+import { useGenerateFlashcards } from "./hooks/useGenerateFlashcards";
+import { useAuth } from "../contexts/AuthContext";
 
 const GenerateFlashcardsView: React.FC = () => {
   const { user, loading } = useAuth();
-  const { 
-    viewState, 
-    editModal, 
-    actions 
-  } = useGenerateFlashcards();
+  const { viewState, editModal, actions } = useGenerateFlashcards();
 
   // Redirect to auth if not authenticated
   useEffect(() => {
-    if (!loading && !user && typeof window !== 'undefined') {
-      window.location.href = '/auth';
+    if (!loading && !user && typeof window !== "undefined") {
+      window.location.href = "/auth";
     }
   }, [user, loading]);
 
@@ -51,10 +47,7 @@ const GenerateFlashcardsView: React.FC = () => {
 
       {/* Generated Flashcards List */}
       {viewState.flashcards.length > 0 && (
-        <GeneratedFlashcardsList
-          flashcards={viewState.flashcards}
-          onFlashcardAction={actions.updateFlashcardStatus}
-        />
+        <GeneratedFlashcardsList flashcards={viewState.flashcards} onFlashcardAction={actions.updateFlashcardStatus} />
       )}
 
       {/* Save Actions Section */}

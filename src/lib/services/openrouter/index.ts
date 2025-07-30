@@ -1,12 +1,12 @@
 /**
  * Eksport publicznego API serwisu OpenRouter
- * 
+ *
  * Ten plik eksportuje wszystkie publiczne elementy serwisu OpenRouter,
  * w tym główną klasę serwisu, typy, błędy i funkcje pomocnicze.
  */
 
 // Główna klasa serwisu
-export { OpenRouterService } from './openrouter.service';
+export { OpenRouterService } from "./openrouter.service";
 
 // Typy
 export type {
@@ -21,8 +21,8 @@ export type {
   CompletionChoice,
   ResponseFormat,
   JSONSchema,
-  TokenUsage
-} from './types';
+  TokenUsage,
+} from "./types";
 
 // Błędy
 export {
@@ -33,9 +33,9 @@ export {
   OpenRouterNetworkError,
   OpenRouterValidationError,
   OpenRouterTimeoutError,
-  OpenRouterRateLimitError
-} from './errors';
+  OpenRouterRateLimitError,
+} from "./errors";
 
 // Funkcje pomocnicze
-export { createResponseFormat } from './types';
-export { validateConfig } from './config';
+export { createResponseFormat } from "./types";
+export { validateConfig } from "./config";

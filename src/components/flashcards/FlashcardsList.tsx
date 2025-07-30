@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import type { FlashcardDto } from '../../types';
-import FlashcardItem from './FlashcardItem.tsx';
+import React, { useState } from "react";
+import type { FlashcardDto } from "../../types";
+import FlashcardItem from "./FlashcardItem.tsx";
 
 interface FlashcardsListProps {
   flashcards: FlashcardDto[];
@@ -9,29 +9,25 @@ interface FlashcardsListProps {
   onReload: () => Promise<void>;
 }
 
-const FlashcardsList: React.FC<FlashcardsListProps> = ({
-  flashcards,
-  onUpdate,
-  onDelete,
-  onReload
-}) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState<'newest' | 'oldest' | 'alphabetical'>('newest');
+const FlashcardsList: React.FC<FlashcardsListProps> = ({ flashcards, onUpdate, onDelete, onReload }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState<"newest" | "oldest" | "alphabetical">("newest");
 
   // Filter flashcards based on search term
-  const filteredFlashcards = flashcards.filter(card =>
-    card.front.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    card.back.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredFlashcards = flashcards.filter(
+    (card) =>
+      card.front.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      card.back.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Sort flashcards
   const sortedFlashcards = [...filteredFlashcards].sort((a, b) => {
     switch (sortBy) {
-      case 'newest':
+      case "newest":
         return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
-      case 'oldest':
+      case "oldest":
         return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
-      case 'alphabetical':
+      case "alphabetical":
         return a.front.localeCompare(b.front);
       default:
         return 0;
@@ -45,10 +41,8 @@ const FlashcardsList: React.FC<FlashcardsListProps> = ({
           <span className="text-4xl">📚</span>
         </div>
         <h3 className="text-xl font-bold text-gray-900 mb-4">Brak fiszek</h3>
-        <p className="text-gray-500 mb-6">
-          Nie masz jeszcze żadnych fiszek. Rozpocznij od wygenerowania nowych!
-        </p>
-        <a 
+        <p className="text-gray-500 mb-6">Nie masz jeszcze żadnych fiszek. Rozpocznij od wygenerowania nowych!</p>
+        <a
           href="/generate"
           className="inline-flex items-center px-6 py-3 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
         >
@@ -64,16 +58,13 @@ const FlashcardsList: React.FC<FlashcardsListProps> = ({
       <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">
-              📚 Twoje fiszki ({flashcards.length})
-            </h2>
+            <h2 className="text-2xl font-bold text-gray-900">📚 Twoje fiszki ({flashcards.length})</h2>
             <p className="text-gray-600">
-              {filteredFlashcards.length !== flashcards.length && 
-                `Pokazuje ${filteredFlashcards.length} z ${flashcards.length} fiszek`
-              }
+              {filteredFlashcards.length !== flashcards.length &&
+                `Pokazuje ${filteredFlashcards.length} z ${flashcards.length} fiszek`}
             </p>
           </div>
-          
+
           <button
             onClick={onReload}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -93,10 +84,10 @@ const FlashcardsList: React.FC<FlashcardsListProps> = ({
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
-          
+
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as any)}
+            onChange={(e) => setSortBy(e.target.value as "newest" | "oldest" | "alphabetical")}
             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           >
             <option value="newest">📅 Najnowsze</option>
@@ -109,17 +100,12 @@ const FlashcardsList: React.FC<FlashcardsListProps> = ({
       {/* Flashcards Grid */}
       {sortedFlashcards.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-500">Brak fiszek pasujących do wyszukiwania "{searchTerm}"</p>
+          <p className="text-gray-500">Brak fiszek pasujących do wyszukiwania &quot;{searchTerm}&quot;</p>
         </div>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {sortedFlashcards.map((flashcard) => (
-            <FlashcardItem
-              key={flashcard.id}
-              flashcard={flashcard}
-              onUpdate={onUpdate}
-              onDelete={onDelete}
-            />
+            <FlashcardItem key={flashcard.id} flashcard={flashcard} onUpdate={onUpdate} onDelete={onDelete} />
           ))}
         </div>
       )}

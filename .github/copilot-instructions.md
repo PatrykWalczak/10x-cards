@@ -1,6 +1,6 @@
 # AI Rules for 10xCards
 
-10xCards is a web application that enables the automatic generation of flashcards using artificial intelligence. The aim of the project 
+10xCards is a web application that enables the automatic generation of flashcards using artificial intelligence. The aim of the project
 is to significantly speed up and simplify the process of creating fiches, enabling usres to qucikly
 transform the text they enter (copy-paste) into high-quality flashcards for learning.
 
@@ -83,7 +83,7 @@ When modifying the directory structure, always update this section.
 - Leverage View Transitions API for smooth page transitions (use ClientRouter)
 - Use content collections with type safety for blog posts, documentation, etc.
 - Leverage Server Endpoints for API routes
-- Use POST, GET  - uppercase format for endpoint handlers
+- Use POST, GET - uppercase format for endpoint handlers
 - Use `export const prerender = false` for API routes
 - Use zod for input validation in API routes
 - Extract logic into services in `src/lib/services`

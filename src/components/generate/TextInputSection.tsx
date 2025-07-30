@@ -1,25 +1,19 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import type { TextInputProps } from '../../types';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import type { TextInputProps } from "../../types";
 
-const TextInputSection: React.FC<TextInputProps> = ({
-  value,
-  onChange,
-  onGenerate,
-  isGenerating,
-  errors
-}) => {
+const TextInputSection: React.FC<TextInputProps> = ({ value, onChange, onGenerate, isGenerating, errors }) => {
   const characterCount = value.length;
   const minChars = 1000;
   const maxChars = 10000;
-  
+
   const isValid = characterCount >= minChars && characterCount <= maxChars;
   const isDisabled = !isValid || isGenerating;
 
   const getCharacterCountColor = () => {
-    if (characterCount < minChars) return 'text-red-500';
-    if (characterCount > maxChars) return 'text-red-500';
-    return 'text-green-600';
+    if (characterCount < minChars) return "text-red-500";
+    if (characterCount > maxChars) return "text-red-500";
+    return "text-green-600";
   };
 
   const getCharacterCountText = () => {
@@ -62,12 +56,10 @@ const TextInputSection: React.FC<TextInputProps> = ({
               </div>
             )}
           </div>
-          
+
           {/* Character count indicator */}
           <div className="flex justify-between items-center pt-2">
-            <div className={`text-sm font-medium ${getCharacterCountColor()}`}>
-              {getCharacterCountText()}
-            </div>
+            <div className={`text-sm font-medium ${getCharacterCountColor()}`}>{getCharacterCountText()}</div>
             <div className="flex items-center space-x-2">
               {characterCount < minChars && (
                 <span className="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">
@@ -75,9 +67,7 @@ const TextInputSection: React.FC<TextInputProps> = ({
                 </span>
               )}
               {characterCount > maxChars && (
-                <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">
-                  Za dużo tekstu
-                </span>
+                <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full">Za dużo tekstu</span>
               )}
               {isValid && (
                 <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
@@ -89,16 +79,12 @@ const TextInputSection: React.FC<TextInputProps> = ({
 
           {/* Progress bar */}
           <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div 
+            <div
               className={`h-full transition-all duration-300 ${
-                characterCount < minChars 
-                  ? 'bg-amber-400' 
-                  : characterCount > maxChars 
-                    ? 'bg-red-400' 
-                    : 'bg-green-400'
+                characterCount < minChars ? "bg-amber-400" : characterCount > maxChars ? "bg-red-400" : "bg-green-400"
               }`}
-              style={{ 
-                width: `${Math.min((characterCount / maxChars) * 100, 100)}%` 
+              style={{
+                width: `${Math.min((characterCount / maxChars) * 100, 100)}%`,
               }}
             />
           </div>
@@ -117,7 +103,7 @@ const TextInputSection: React.FC<TextInputProps> = ({
 
         {/* Generate button */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button 
+          <Button
             onClick={onGenerate}
             disabled={isDisabled}
             className="px-8 py-3 text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-200"
@@ -129,9 +115,7 @@ const TextInputSection: React.FC<TextInputProps> = ({
                 Generowanie fiszek...
               </>
             ) : (
-              <>
-                🤖 Generuj fiszki AI
-              </>
+              <>🤖 Generuj fiszki AI</>
             )}
           </Button>
         </div>
@@ -139,8 +123,8 @@ const TextInputSection: React.FC<TextInputProps> = ({
         {/* Help text */}
         <div className="text-center">
           <p className="text-sm text-gray-500">
-            AI przeanalizuje tekst i wygeneruje inteligentne fiszki edukacyjne. 
-            Możesz następnie wybrać, które chcesz zapisać lub edytować.
+            AI przeanalizuje tekst i wygeneruje inteligentne fiszki edukacyjne. Możesz następnie wybrać, które chcesz
+            zapisać lub edytować.
           </p>
         </div>
       </div>
