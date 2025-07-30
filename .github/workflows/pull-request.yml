@@ -31,7 +31,7 @@ jobs:
         run: |
           # Run ESLint and capture output
           npm run lint > eslint-output.txt 2>&1 || true
-          
+
           # Check if there are any errors (not just warnings)
           if grep -q "error" eslint-output.txt; then
             echo "ESLint found errors:"
