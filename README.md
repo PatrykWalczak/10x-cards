@@ -12,7 +12,7 @@
 📊 **Analityka nauki** - śledzenie statystyk generowania i akceptacji fiszek  
 📱 **Responsywny design** - pełna optymalizacja dla urządzeń mobilnych
 
-## 🖼️ Screenshoty
+## 🖼️ Screenshoty.
 
 ### Strona główna
 
