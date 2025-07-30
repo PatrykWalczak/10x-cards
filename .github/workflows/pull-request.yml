@@ -46,7 +46,7 @@ jobs:
       - name: Check formatting
         run: npx prettier --check .
 
-  # Job 2: Testy jednostkowe z coverage
+  # Job 2: Testy jednostkowe
   test:
     name: 🧪 Unit Tests
     runs-on: ubuntu-latest
@@ -64,16 +64,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests with coverage
-        run: npm run test:coverage
-
-      - name: Upload coverage to artifact
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: coverage-report
-          path: coverage/
-          retention-days: 5
+      - name: Run tests
+        run: npm run test:run
 
   # Job 3: Komentarz statusu w PR
   status-comment:
@@ -84,24 +76,6 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - name: Download coverage artifact
-        uses: actions/download-artifact@v4
-        if: needs.test.result == 'success'
-        with:
-          name: coverage-report
-          path: coverage/
-
-      - name: Read coverage summary
-        id: coverage
-        if: needs.test.result == 'success'
-        run: |
-          if [ -f "coverage/coverage-summary.json" ]; then
-            COVERAGE=$(cat coverage/coverage-summary.json | grep -o '"pct":[0-9.]*' | head -1 | cut -d':' -f2)
-            echo "coverage=$COVERAGE" >> $GITHUB_OUTPUT
-          else
-            echo "coverage=N/A" >> $GITHUB_OUTPUT
-          fi
-
       - name: Create PR comment
         uses: thollander/actions-comment-pull-request@v3
         with:
@@ -111,8 +85,7 @@ jobs:
             | Job | Status | Details |
             |-----|--------|---------|
             | 🔍 Code Quality (Lint) | ${{ needs.lint.result == 'success' && '✅ Passed' || '❌ Failed' }} | ESLint + Prettier |
-            | 🧪 Unit Tests | ${{ needs.test.result == 'success' && '✅ Passed' || '❌ Failed' }} | Vitest with coverage |
-            | 📊 Test Coverage | ${{ steps.coverage.outputs.coverage != 'N/A' && format('📈 {0}%', steps.coverage.outputs.coverage) || '⚠️ N/A' }} | Overall coverage |
+            | 🧪 Unit Tests | ${{ needs.test.result == 'success' && '✅ Passed' || '❌ Failed' }} | Vitest tests |
 
             ### Summary
             ${{ (needs.lint.result == 'success' && needs.test.result == 'success') && '🎉 All checks passed! Ready for review.' || '⚠️ Some checks failed. Please review and fix issues before merging.' }}
