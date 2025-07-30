@@ -200,7 +200,7 @@ npm run build
 
 ## 🤝 Autorzy
 
-Projekt stworzony jako część kursu programowania **10xdevs**
+Projekt stworzony jako część kursu programowania **10xdevs**.
 
 ## 📄 Licencja
 
