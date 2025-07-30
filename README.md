@@ -1,5 +1,6 @@
 ## 📚 📋 O projekcie 10x Cards
 
+
 10x Cards to innowacyjna aplikacja, która rozwiązuje czasochłonny proces ręcznego tworzenia fiszek edukacyjnych poprzez dostarczenie rozwiązania opartego na AI. Aplikacja łączy efektywność automatycznego generowania treści z sprawdzoną metodologią nauki przez powtarzanie rozłożone w czasie.
 
 ## 🎯 Główne funkcjonalności
