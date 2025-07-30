@@ -2,7 +2,7 @@
 
 10x Cards to innowacyjna aplikacja, która rozwiązuje czasochłonny proces ręcznego tworzenia fiszek edukacyjnych poprzez dostarczenie rozwiązania opartego na AI. Aplikacja łączy efektywność automatycznego generowania treści z sprawdzoną metodologią nauki przez powtarzanie rozłożone w czasie.
 
-## 🎯 Główne funkcjonalności
+## 🎯 Główne funkcjonalności 
 
 🤖 **Generowanie fiszek przez AI** - wykorzystuje zaawansowane modele LLM (OpenRouter API) do automatycznego tworzenia fiszek z tekstu  
 ✏️ **Ręczne tworzenie fiszek** - możliwość tworzenia niestandardowych fiszek z własną treścią  
@@ -201,7 +201,7 @@ npm run build
 
 ## 🤝 Autorzy
 
-Projekt stworzony jako część kursu programowania **10xdevs**
+Projekt stworzony jako część kursu programowania **10xdevs**.
 
 ## 📄 Licencja
 
