@@ -54,6 +54,7 @@ _Zarządzanie kolekcją fiszek z możliwością edycji i usuwania_
 - **ESLint & Prettier** - jakość i formatowanie kodu
 - **Husky** - git hooks dla jakości kodu
 
+
 ## 📁 Struktura projektu
 
 ```
@@ -200,7 +201,7 @@ npm run build
 
 ## 🤝 Autorzy
 
-Projekt stworzony jako część kursu programowania **10xdevs**.
+Projekt stworzony jako część kursu programowania **10xdevs**
 
 ## 📄 Licencja
 
