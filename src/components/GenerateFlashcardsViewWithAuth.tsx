@@ -28,7 +28,6 @@ const GenerateFlashcardsViewWithAuth: React.FC = () => {
           return;
         }
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error("Error getting session:", error);
         window.location.href = "/auth";
       } finally {
